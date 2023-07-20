@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.tekup.com/xml/store" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.tekup.com/xml/store" targetNamespace="http://www.tekup.com/xml/store">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.tekup.com/xml/store">
+            <xs:element name="ItemDetailsRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ItemDetailsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Item" type="tns:Item"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreateItemRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                        <xs:element name="price" type="xs:int"/>
+                        <xs:element name="description" type="xs:string"/>
+
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdateItemRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                        <xs:element name="newName" type="xs:string"/>
+                        <xs:element name="price" type="xs:int"/>
+                        <xs:element name="description" type="xs:string"/>
+
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DeleteItemRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UpdateItemResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreateItemResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DeleteItemResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="Item">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="price" type="xs:int"/>
+                    <xs:element name="description" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ItemDetailsRequest">
+        <wsdl:part element="tns:ItemDetailsRequest" name="ItemDetailsRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ItemDetailsResponse">
+        <wsdl:part element="tns:ItemDetailsResponse" name="ItemDetailsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreateItemRequest">
+        <wsdl:part element="tns:CreateItemRequest" name="CreateItemRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateItemResponse">
+        <wsdl:part element="tns:CreateItemResponse" name="CreateItemResponse"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateItemRequest">
+        <wsdl:part element="tns:UpdateItemRequest" name="UpdateItemRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateItemResponse">
+        <wsdl:part element="tns:UpdateItemResponse" name="UpdateItemResponse"/>
+    </wsdl:message>
+    <wsdl:message name="DeleteItemRequest">
+        <wsdl:part element="tns:DeleteItemRequest" name="DeleteItemRequest"/>
+    </wsdl:message>
+    <wsdl:message name="DeleteItemResponse">
+        <wsdl:part element="tns:DeleteItemResponse" name="DeleteItemResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="ItemEndPointPortType">
+        <wsdl:operation name="getItem">
+            <wsdl:input message="tns:ItemDetailsRequest" name="ItemDetailsRequest"/>
+            <wsdl:output message="tns:ItemDetailsResponse" name="ItemDetailsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createItem">
+            <wsdl:input message="tns:CreateItemRequest" name="CreateItemRequest"/>
+            <wsdl:output message="tns:CreateItemResponse" name="CreateItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateItem">
+            <wsdl:input message="tns:UpdateItemRequest" name="UpdateItemRequest"/>
+            <wsdl:output message="tns:UpdateItemResponse" name="UpdateItemResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteItem">
+            <wsdl:input message="tns:DeleteItemRequest" name="DeleteItemRequest"/>
+            <wsdl:output message="tns:DeleteItemResponse" name="DeleteItemResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ItemEndPointSoap11Binding" type="tns:ItemEndPointPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getItem">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="ItemDetailsRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ItemDetailsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createItem">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="CreateItemRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="CreateItemResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateItem">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="UpdateItemRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="UpdateItemResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteItem">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="DeleteItemRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="DeleteItemResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ItemEndPointService">
+        <wsdl:port binding="tns:ItemEndPointSoap11Binding" name="ItemEndPointPort">
+            <soap:address location="http://localhost:8080/service/item-endpoint"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
